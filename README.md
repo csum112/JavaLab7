@@ -2,11 +2,11 @@
 ### Catalin Sumanaru - Grupa A2 Anul 2
 
 #### Console output
-Pentru
-n = 450 --numarul total de tokenuri
-m = 400 --numarul maxim
-k = 20 --lungimea secventei pentru a castiga
-numberOfPlayers = 20
+Pentru parametrii: \n
+n = 450 --numarul total de tokenuri \n
+m = 400 --numarul maxim \n
+k = 20 --lungimea secventei pentru a castiga \n
+numberOfPlayers = 20 \n
 ```
 20:51:21: Executing task 'Compulsory.main()'...
 
