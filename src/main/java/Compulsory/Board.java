@@ -37,9 +37,12 @@ public class Board {
         return isOver;
     }
 
-    synchronized
+
     public boolean isBoardEmpty() {
-        return tokens.size() == 0;
+
+        final boolean isEmpty =  tokens.size() == 0;
+        if(isEmpty) isOver = true;
+        return isEmpty;
     }
 
     public HashSet<Token> getTokens() {
@@ -67,6 +70,7 @@ public class Board {
     public Token takeToken(Token token) {
         if (tokens.contains(token)) {
             tokens.remove(token);
+            this.notifyAll();
             return token;
         } else throw new Error("Token does not exist");
     }
@@ -75,7 +79,7 @@ public class Board {
      * Ia un token random daca mai exista
      * @return
      */
-    synchronized
+
     public Token takeFirstToken() {
         if (isBoardEmpty())
             throw new Error("Board is empty");

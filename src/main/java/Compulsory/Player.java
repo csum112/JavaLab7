@@ -4,10 +4,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Player implements Runnable {
-    private Board board;
+    protected Board board;
     private String name;
-    private List<Token> tokens;
-    private int totalScore;
+    protected List<Token> tokens;
     private int roundScore;
 
     public Player(Board board, String name) {
@@ -15,7 +14,6 @@ public class Player implements Runnable {
         this.name = name;
         this.tokens = new LinkedList<Token>();
         this.roundScore = 0;
-        this.totalScore = 0;
     }
 
     public String getName() {
@@ -25,7 +23,7 @@ public class Player implements Runnable {
     /**
      * Ia un token din board
      */
-    private void takeRandomToken() {
+    protected void makeTurnDecision() {
         final Token token = board.takeFirstToken();
         tokens.add(token);
     }
@@ -41,16 +39,23 @@ public class Player implements Runnable {
         return roundScore == board.getK();
     }
 
+    /**
+     * Turn action logic.
+     */
+    protected void takeTurn()
+    {
+        if (!board.isBoardEmpty()) {
+            this.makeTurnDecision();
+            if (haveIWon())
+                board.signalWin(this);
+        }
+    }
+
     @Override
     public void run() {
         System.out.println(name + " started playing!");
         while (!board.isOver()) {
-
-            if (!board.isBoardEmpty())
-                this.takeRandomToken();
-            else break;
-            if (haveIWon())
-                board.signalWin(this);
+            takeTurn();
         }
     }
 }
