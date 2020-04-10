@@ -28,7 +28,7 @@ public class HumanPlayer extends CivilizedPlayer {
     private void printAvailableTokens(List<Token> availableTokens) {
         System.out.print("\n");
         for (int index = 0; index < availableTokens.size(); index++) {
-            System.out.print(index + ": " + availableTokens.get(index));
+            System.out.print(index + ": " + availableTokens.get(index) + " ");
         }
         System.out.print("\n");
     }
